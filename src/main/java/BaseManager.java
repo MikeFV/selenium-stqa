@@ -1,7 +1,10 @@
+import java.util.Properties;
+
 public class BaseManager {
     private static BaseManager instance = null;
     private WebDriverManager webDriverManager;
     private BaseHelper baseHelper;
+    private Properties properties;
 
     private BaseManager() {
         webDriverManager = new WebDriverManager();
@@ -13,6 +16,14 @@ public class BaseManager {
             instance = new BaseManager();
         }
         return instance;
+    }
+
+    public String getProperty(String propertyName) {
+        if (properties == null) {
+            PropertiesLoader propertiesLoader = new PropertiesLoader();
+            properties = propertiesLoader.loadProperties();
+        }
+        return properties.getProperty(propertyName);
     }
 
     public WebDriverManager getWebDriverManager() {
