@@ -27,12 +27,10 @@ public class MainTest {
         wd.findElement(By.xpath("//input[@name = 'password']")).sendKeys("admin_pass");
         wd.findElement(By.xpath("//button[@name = 'login']")).click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
-        wd.close();
     }
 
     @After
     public void tearDown() throws Exception {
         wd.close();
-        wd.quit();
     }
 }

@@ -7,7 +7,7 @@ public class BaseManager {
     private Properties properties;
 
     private BaseManager() {
-        webDriverManager = new WebDriverManager();
+        webDriverManager = new WebDriverManager(Browser.valueOf(getProperty("browser")));
         baseHelper = BaseHelper.getInstance();
     }
 
