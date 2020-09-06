@@ -33,5 +33,6 @@ public class MainTest {
     @After
     public void tearDown() throws Exception {
         wd.close();
+        wd.quit();
     }
 }

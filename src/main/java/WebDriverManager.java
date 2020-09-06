@@ -1,4 +1,4 @@
-import org.apache.commons.exec.OS;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit;
 public class WebDriverManager {
     private String driversPath = "drivers";
     private String chromedriverWin = "chromedriver.exe";
-    private ChromeDriver chromeDriver = null;
+    private WebDriver webDriver = null;
+
 
     public WebDriverManager() {}
 
@@ -21,13 +22,13 @@ public class WebDriverManager {
         System.setProperty("webdriver.chrome.driver", getAbsPathToWD().toString());
     }
 
-    public ChromeDriver getDriver() {
-        if (this.chromeDriver == null) {
+    public WebDriver getDriver() {
+        if (this.webDriver == null) {
             setEnvironmentVariable();
-            chromeDriver = new ChromeDriver();
-            chromeDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            webDriver = new ChromeDriver();
+            webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         }
-        return this.chromeDriver;
+        return this.webDriver;
     }
 
 }
