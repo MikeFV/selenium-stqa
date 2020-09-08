@@ -5,9 +5,5 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class Main {
     public static void main(String[] args) {
-        BaseManager bm = BaseManager.getInstance();
-        System.out.println(bm.getProperty("browser"));
-        Browser browser = Browser.valueOf(bm.getProperty("browser"));
-        System.out.println(browser);
     }
 }
