@@ -25,6 +25,6 @@ public class BaseHelper {
                 .getInstance()
                 .getWebDriverManager()
                 .getDriver()
-                .findElements(By.xpath(xpathLocator)).size() > 0;
+                .findElements(By.xpath(xpathLocator)).size() == 1;
     }
 }

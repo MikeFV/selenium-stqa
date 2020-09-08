@@ -21,12 +21,12 @@ public class SideMenuTest {
     }
 
     @Test
-    public void login() {
+    public void sideMenu() {
         wd.get("http://localhost/litecart/admin/");
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//input[@name = 'username']"))));
         wd.findElement(By.xpath("//input[@name = 'username']")).sendKeys("admin");
         wd.findElement(By.xpath("//input[@name = 'password']")).sendKeys("admin_pass");
-        wd.findElement(By.xpath("//button[@name = 'login']")).click();
+        wd.findElement(By.xpath("//button[@name = 'stickers']")).click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
         List<WebElement> menuElements = wd.findElements(By.xpath("//ul[@id = 'box-apps-menu']/li[@id = 'app-']"));
         int menuItemsCount = menuElements.size();
