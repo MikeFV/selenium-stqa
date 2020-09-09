@@ -34,20 +34,15 @@ public class SideMenuTest {
         for (int menuItemsCounter = 0; menuItemsCounter < menuItemsCount; menuItemsCounter++) {
             getCurrentMenuItemElement(menuItemsCounter).click();
             waitUntilElementToBeActive(getCurrentMenuItemElement(menuItemsCounter));
-            String activeMenuElementText;
             if (currentMenuItemHasSubElements(menuItemsCounter)) {
                 int submenuElementsCount = getCurrentMenuItemSubElements(menuItemsCounter).size();
                     for (int subElementCounter = 0; subElementCounter < submenuElementsCount; subElementCounter++) {
                         getCurrentMenuItemSubElement(menuItemsCounter, subElementCounter).click();
                         waitUntilElementToBeActive(getCurrentMenuItemSubElement(menuItemsCounter,subElementCounter));
-                        activeMenuElementText = getCurrentMenuItemSubElement(menuItemsCounter, subElementCounter).getText();
-                        Assert.assertEquals(activeMenuElementText, getPageHeaderText());
+                        Assert.assertTrue(pageContainHeader());
                     }
             }
-            else {
-                activeMenuElementText = getCurrentMenuItemElement(menuItemsCounter).getText();
-                Assert.assertEquals(activeMenuElementText, getPageHeaderText());
-            }
+            Assert.assertTrue(pageContainHeader());
         }
     }
 
