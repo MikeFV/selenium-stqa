@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -33,12 +34,19 @@ public class SideMenuTest {
         for (int menuItemsCounter = 0; menuItemsCounter < menuItemsCount; menuItemsCounter++) {
             getCurrentMenuItemElement(menuItemsCounter).click();
             waitUntilElementToBeActive(getCurrentMenuItemElement(menuItemsCounter));
+            String activeMenuElementText;
             if (currentMenuItemHasSubElements(menuItemsCounter)) {
                 int submenuElementsCount = getCurrentMenuItemSubElements(menuItemsCounter).size();
                     for (int subElementCounter = 0; subElementCounter < submenuElementsCount; subElementCounter++) {
                         getCurrentMenuItemSubElement(menuItemsCounter, subElementCounter).click();
                         waitUntilElementToBeActive(getCurrentMenuItemSubElement(menuItemsCounter,subElementCounter));
+                        activeMenuElementText = getCurrentMenuItemSubElement(menuItemsCounter, subElementCounter).getText();
+                        Assert.assertEquals(activeMenuElementText, getPageHeaderText());
                     }
+            }
+            else {
+                activeMenuElementText = getCurrentMenuItemElement(menuItemsCounter).getText();
+                Assert.assertEquals(activeMenuElementText, getPageHeaderText());
             }
         }
     }
@@ -66,5 +74,13 @@ public class SideMenuTest {
     }
     private void waitUntilElementToBeActive(WebElement element)  {
         baseHelper.fluentWait().until(ExpectedConditions.attributeToBe(element, "class", "selected"));
+    }
+
+    private String getPageHeaderText() {
+        return wd.findElement(By.xpath("//h1")).getText();
+    }
+
+    private Boolean pageContainHeader() {
+        return wd.findElement(By.xpath("//h1")).isDisplayed();
     }
 }
