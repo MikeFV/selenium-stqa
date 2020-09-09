@@ -25,7 +25,7 @@ public class MainTest {
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//input[@name = 'username']"))));
         wd.findElement(By.xpath("//input[@name = 'username']")).sendKeys("admin");
         wd.findElement(By.xpath("//input[@name = 'password']")).sendKeys("admin_pass");
-        wd.findElement(By.xpath("//button[@name = 'sideMenu']")).click();
+        wd.findElement(By.xpath("//button[@name = 'login']")).click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
     }
 

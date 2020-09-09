@@ -26,11 +26,11 @@ public class SideMenuTest {
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//input[@name = 'username']"))));
         wd.findElement(By.xpath("//input[@name = 'username']")).sendKeys("admin");
         wd.findElement(By.xpath("//input[@name = 'password']")).sendKeys("admin_pass");
-        wd.findElement(By.xpath("//button[@name = 'stickers']")).click();
+        wd.findElement(By.xpath("//button[@name = 'login']")).click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
         List<WebElement> menuElements = wd.findElements(By.xpath("//ul[@id = 'box-apps-menu']/li[@id = 'app-']"));
         int menuItemsCount = menuElements.size();
-        for (int menuItemsCounter = 1; menuItemsCounter < menuItemsCount; menuItemsCounter++) {
+        for (int menuItemsCounter = 0; menuItemsCounter < menuItemsCount; menuItemsCounter++) {
             getCurrentMenuItemElement(menuItemsCounter).click();
             waitUntilElementToBeActive(getCurrentMenuItemElement(menuItemsCounter));
             if (currentMenuItemHasSubElements(menuItemsCounter)) {
