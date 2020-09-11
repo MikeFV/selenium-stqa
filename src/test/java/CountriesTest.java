@@ -2,8 +2,8 @@ import Objects.Countries;
 import Objects.CountriesComparator;
 import Objects.Zone;
 import Objects.ZonesComparator;
+import PageObjects.Pages;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,11 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.junit.Assert.*;
 
@@ -24,12 +21,14 @@ public class CountriesTest {
     private BaseManager bm;
     private WebDriver wd;
     private BaseHelper baseHelper;
+    private Pages pages;
 
     @Before
     public void setUp() throws Exception {
         bm = BaseManager.getInstance();
         wd = bm.getWebDriverManager().getDriver();
         baseHelper = bm.getBaseHelper();
+        pages = Pages.getInstance();
     }
 
     @Test
@@ -64,10 +63,10 @@ public class CountriesTest {
 
     private void login() {
         wd.get("http://localhost/litecart/admin/");
-        baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//input[@name = 'username']"))));
-        wd.findElement(By.xpath("//input[@name = 'username']")).sendKeys("admin");
-        wd.findElement(By.xpath("//input[@name = 'password']")).sendKeys("admin_pass");
-        wd.findElement(By.xpath("//button[@name = 'login']")).click();
+        baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath(pages.getAdminLogin().getUserNameField()))));
+        wd.findElement(By.xpath(pages.getAdminLogin().getUserNameField())).sendKeys("admin");
+        wd.findElement(By.xpath(pages.getAdminLogin().getPasswordField())).sendKeys("admin_pass");
+        wd.findElement(By.xpath(pages.getAdminLogin().getLoginButton())).click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
     }
 
@@ -100,7 +99,6 @@ public class CountriesTest {
             zoneListSortResults.add(zoneListSorted(zones));
             openCountriesPage();
         }
-
         return zoneListSortResults.stream().allMatch(sortResult -> sortResult);
     }
 }

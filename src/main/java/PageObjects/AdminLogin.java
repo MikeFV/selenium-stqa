@@ -1,4 +1,4 @@
-package Pages;
+package PageObjects;
 
 public class AdminLogin {
     String userNameField = "//input[@name = 'username']";
