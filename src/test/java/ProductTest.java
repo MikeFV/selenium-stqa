@@ -118,11 +118,9 @@ public class ProductTest {
     private Color colorConverter(String color) {
         String colorType = getColorType(color);
         List<Integer> colorValues = getColorValue(color);
-        if (colorType.equals("rgb")) {
-            return new Color(colorValues.get(0), colorValues.get(1), colorValues.get(2));
-        }
-        if (colorType.equals("rgba")) {
-            return new Color(colorValues.get(0), colorValues.get(1), colorValues.get(2), colorValues.get(3));
+        switch (colorType) {
+            case "rgb": return new Color(colorValues.get(0), colorValues.get(1), colorValues.get(2));
+            case "rgba": return new Color(colorValues.get(0), colorValues.get(1), colorValues.get(2), colorValues.get(3));
         }
         throw new IllegalArgumentException("Can't parse color " + color);
     }
