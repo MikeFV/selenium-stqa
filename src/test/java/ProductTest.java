@@ -74,10 +74,6 @@ public class ProductTest {
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//div[@id = 'logotype-wrapper']"))));
     }
 
-    private List<WebElement> getProducts() {
-        return wd.findElements(By.xpath("//li[contains(@class, 'product')]"));
-    }
-
     private Boolean regularPriceStyleIsValid(WebElement element) {
         return element.getCssValue("text-decoration-line").equals("line-through") && isGrey(element);
     }
