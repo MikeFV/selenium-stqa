@@ -1,9 +1,11 @@
 package Objects;
 
+import java.util.Objects;
+
 public class Product {
-    String name;
-    String regularPrice;
-    String campaignPrice;
+    private String name;
+    private String regularPrice;
+    private String campaignPrice;
 
     public String getName() {
         return name;
@@ -37,14 +39,19 @@ public class Product {
                 ", campaignPrice='" + campaignPrice + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(name, product.name) &&
+                Objects.equals(regularPrice, product.regularPrice) &&
+                Objects.equals(campaignPrice, product.campaignPrice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, regularPrice, campaignPrice);
+    }
 }
-
-
-/*
-а) на главной странице и на странице товара совпадает текст названия товара
-б) на главной странице и на странице товара совпадают цены (обычная и акционная)
-в) обычная цена зачёркнутая и серая (можно считать, что "серый" цвет это такой, у которого в RGBa представлении одинаковые значения для каналов R, G и B)
-г) акционная жирная и красная (можно считать, что "красный" цвет это такой, у которого в RGBa представлении каналы G и B имеют нулевые значения)
-(цвета надо проверить на каждой странице независимо, при этом цвета на разных страницах могут не совпадать)
-д) акционная цена крупнее, чем обычная (это тоже надо проверить на каждой странице независимо)
- */

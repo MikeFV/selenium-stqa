@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ProductTest {
     private BaseManager bm;
@@ -42,7 +43,7 @@ public class ProductTest {
         productCard.setRegularPrice(productCardRegularPrice.getText());
         productCard.setCampaignPrice(productCardCampaignPrice.getText());
 
-        assertTrue(productCardRegularPriceStyleIsValid(productCardRegularPrice));
+        assertTrue(regularPriceStyleIsValid(productCardRegularPrice));
         assertTrue(campaignPriceStyleIsValid(productCardCampaignPrice));
         assertTrue(campaignPriceLargerThanRegularPrice(productCardRegularPrice, productCardCampaignPrice));
 
@@ -60,7 +61,7 @@ public class ProductTest {
         product.setRegularPrice(productRegularPrice.getText());
         product.setCampaignPrice(productCampaignPrice.getText());
 
-        assertTrue(productDetailRegularPriceStyleIsValid(productRegularPrice));
+        assertTrue(regularPriceStyleIsValid(productRegularPrice));
         assertTrue(campaignPriceStyleIsValid(productCampaignPrice));
         assertTrue(campaignPriceLargerThanRegularPrice(productRegularPrice, productCampaignPrice));
 
@@ -83,26 +84,13 @@ public class ProductTest {
         return wd.findElements(By.xpath("//li[contains(@class, 'product')]"));
     }
 
-    private Boolean elementColorIsValid(WebElement element, String rgbColor, String rgbaColor) {
-        String elementColor = element.getCssValue("color");
-        return (elementColor.equals(rgbColor) || elementColor.equals(rgbaColor));
-    }
-
-    private Boolean productCardRegularPriceStyleIsValid(WebElement element) {
-        return element.getCssValue("text-decoration-line").equals("line-through") &&
-                elementColorIsValid(element, "rgb(119, 119, 119)", "rgba(119, 119, 119, 1)");
-
-    }
-
-    private Boolean productDetailRegularPriceStyleIsValid(WebElement element) {
-        return element.getCssValue("text-decoration-line").equals("line-through") &&
-                elementColorIsValid(element, "rgb(102, 102, 102)", "rgba(102, 102, 102, 1)");
-
+    private Boolean regularPriceStyleIsValid(WebElement element) {
+        return element.getCssValue("text-decoration-line").equals("line-through") && isGrey(element);
     }
 
     private Boolean campaignPriceStyleIsValid(WebElement element) {
-        return element.getCssValue("font-weight").equals("900") &&
-                elementColorIsValid(element, "rgb(204, 0, 0)", "rgba(204, 0, 0, 1)");
+        return Integer.valueOf(element.getCssValue("font-weight")) >= 400 && isRed(element);
+
     }
 
     private Boolean campaignPriceLargerThanRegularPrice(WebElement regularPrice, WebElement campaignPrice) {
@@ -118,7 +106,7 @@ public class ProductTest {
             return matcher.group(0);
         }
         else {
-            throw new IllegalStateException("Color type not found");
+            throw new IllegalArgumentException("Color type not found" + color);
         }
     }
 
@@ -143,5 +131,15 @@ public class ProductTest {
             return new Color(colorValues.get(0), colorValues.get(1), colorValues.get(2), colorValues.get(3));
         }
         throw new IllegalArgumentException("Can't parse color " + color);
+    }
+
+    private Boolean isGrey(WebElement element) {
+        Color normalizedColor = colorConverter(element.getCssValue("color"));
+        return normalizedColor.getRed() == normalizedColor.getGreen() && normalizedColor.getGreen() == normalizedColor.getBlue();
+    }
+
+    private Boolean isRed(WebElement element) {
+        Color normalizedColor = colorConverter(element.getCssValue("color"));
+        return normalizedColor.getRed() != 0 && normalizedColor.getGreen() == 0 && normalizedColor.getBlue() == 0;
     }
 }
