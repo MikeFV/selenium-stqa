@@ -41,7 +41,6 @@ public class CountriesTest {
 
         List<Countries> countriesWithTimeZones = getCountriesWithZones(countries);
         assertTrue(zoneListsSorted(countriesWithTimeZones));
-
     }
 
     @After
@@ -95,7 +94,10 @@ public class CountriesTest {
             baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//h1[contains(.,'Edit Country')]"))));
             List<WebElement> timeZoneRows = wd.findElements(By.xpath("//table[contains(@class,'dataTable')]//tr[not(contains(@class, 'header')) and not(contains(@class, 'footer'))]"));
             timeZoneRows.remove(timeZoneRows.size() - 1);
-            List<Zone> zones = timeZoneRows.stream().map(WebElement -> new Zone(WebElement.findElement(By.xpath("./td[3]")).getText())).collect(Collectors.toList());
+            List<Zone> zones = timeZoneRows
+                    .stream()
+                    .map(WebElement -> new Zone(WebElement.findElement(By.xpath("./td[3]")).getText()))
+                    .collect(Collectors.toList());
             zoneListSortResults.add(zoneListSorted(zones));
             openCountriesPage();
         }
