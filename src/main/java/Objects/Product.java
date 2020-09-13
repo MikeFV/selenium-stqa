@@ -7,6 +7,15 @@ public class Product {
     private String regularPrice;
     private String campaignPrice;
 
+    public Product() {
+    }
+
+    public Product(String name, String regularPrice, String campaignPrice) {
+        this.name = name;
+        this.regularPrice = regularPrice;
+        this.campaignPrice = campaignPrice;
+    }
+
     public String getName() {
         return name;
     }

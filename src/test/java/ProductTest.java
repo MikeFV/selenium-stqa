@@ -38,10 +38,7 @@ public class ProductTest {
         WebElement productCardRegularPrice = productCardElement.findElement(By.xpath(".//s[contains(@class, 'regular-price')]"));
         WebElement productCardCampaignPrice = productCardElement.findElement(By.xpath(".//strong[contains(@class, 'campaign-price')]"));
 
-        Product productCard = new Product();
-        productCard.setName(productCardName.getText());
-        productCard.setRegularPrice(productCardRegularPrice.getText());
-        productCard.setCampaignPrice(productCardCampaignPrice.getText());
+        Product productCard = new Product(productCardName.getText(), productCardRegularPrice.getText(), productCardCampaignPrice.getText());
 
         assertTrue(regularPriceStyleIsValid(productCardRegularPrice));
         assertTrue(campaignPriceStyleIsValid(productCardCampaignPrice));
@@ -56,10 +53,7 @@ public class ProductTest {
         WebElement productRegularPrice = productElement.findElement(By.xpath(".//s[contains(@class, 'regular-price')]"));
         WebElement productCampaignPrice = productElement.findElement(By.xpath(".//strong[contains(@class, 'campaign-price')]"));
 
-        Product product = new Product();
-        product.setName(productName.getText());
-        product.setRegularPrice(productRegularPrice.getText());
-        product.setCampaignPrice(productCampaignPrice.getText());
+        Product product = new Product(productName.getText(), productRegularPrice.getText(), productCampaignPrice.getText());
 
         assertTrue(regularPriceStyleIsValid(productRegularPrice));
         assertTrue(campaignPriceStyleIsValid(productCampaignPrice));
