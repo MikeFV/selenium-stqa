@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.NoSuchElementException;
-import java.util.concurrent.TimeUnit;
 
 public class BaseHelper {
     private static BaseHelper ourInstance = new BaseHelper();
@@ -21,12 +21,9 @@ public class BaseHelper {
     public FluentWait<WebDriver> fluentWait() {
 
         return new WebDriverWait(BaseManager.getInstance().getWebDriverManager().getDriver(), 60)
-                .pollingEvery(200, TimeUnit.MILLISECONDS)
+                .pollingEvery(Duration.ofMillis(200))
                 .ignoring(NoSuchElementException.class);
         }
-
-
-
 
     public Boolean elementPresent(String xpathLocator) {
         return BaseManager

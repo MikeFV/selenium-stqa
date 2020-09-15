@@ -34,11 +34,13 @@ public class AdminLoginPageSteps {
     public void clickLoginButton() {
         pages.getAdminLoginPage().getLoginButton().getElement().click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
-        try {
+        /*try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
     public void login() {
