@@ -1,8 +1,12 @@
+import Base.BaseHelper;
+import Base.BaseManager;
 import Objects.Countries;
 import Objects.CountriesComparator;
 import Objects.Zone;
 import Objects.ZonesComparator;
 import PageObjects.Pages;
+import PageSteps.AdminLoginPageSteps;
+import PageSteps.AdminMainPageSteps;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class CountriesTest {
     private BaseManager bm;
     private WebDriver wd;
     private BaseHelper baseHelper;
     private Pages pages;
+    private AdminLoginPageSteps adminLoginPageSteps;
+    private AdminMainPageSteps adminMainPageSteps;
 
     @Before
     public void setUp() throws Exception {
@@ -29,12 +35,14 @@ public class CountriesTest {
         wd = bm.getWebDriverManager().getDriver();
         baseHelper = bm.getBaseHelper();
         pages = Pages.getInstance();
+        adminLoginPageSteps = new AdminLoginPageSteps();
+        adminMainPageSteps = new AdminMainPageSteps();
     }
 
     @Test
     public void countriesTest() {
-        login();
-        openCountriesPage();
+        adminLoginPageSteps.login();
+        adminMainPageSteps.openSideMenuPage("Countries");
 
         List<Countries> countries = getCountriesFromTable();
         assertTrue(countriesListSorted(countries));
@@ -58,20 +66,6 @@ public class CountriesTest {
         List<Zone> sortedZones = new ArrayList<>(zones);
         sortedZones.sort(new ZonesComparator());
         return zones.equals(sortedZones);
-    }
-
-    private void login() {
-        wd.get("http://localhost/litecart/admin/");
-        baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath(pages.getAdminLogin().getUserNameField()))));
-        wd.findElement(By.xpath(pages.getAdminLogin().getUserNameField())).sendKeys("admin");
-        wd.findElement(By.xpath(pages.getAdminLogin().getPasswordField())).sendKeys("admin_pass");
-        wd.findElement(By.xpath(pages.getAdminLogin().getLoginButton())).click();
-        baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.id("sidebar"))));
-    }
-
-    private void openCountriesPage() {
-        wd.get("http://localhost/litecart/admin/?app=countries&doc=countries");
-        baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(wd.findElement(By.xpath("//h1[contains(.,'Countries')]"))));
     }
 
     private List<Countries> getCountriesFromTable() {
@@ -99,7 +93,7 @@ public class CountriesTest {
                     .map(WebElement -> new Zone(WebElement.findElement(By.xpath("./td[3]")).getText()))
                     .collect(Collectors.toList());
             zoneListSortResults.add(zoneListSorted(zones));
-            openCountriesPage();
+            adminMainPageSteps.openSideMenuPage("Countries");
         }
         return zoneListSortResults.stream().allMatch(sortResult -> sortResult);
     }

@@ -1,3 +1,5 @@
+import Base.BaseHelper;
+import Base.BaseManager;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,9 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.logging.Logger;
-
-import static org.junit.Assert.*;
 
 public class StickersTest {
     private BaseManager bm;

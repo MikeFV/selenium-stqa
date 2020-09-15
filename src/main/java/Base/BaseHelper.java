@@ -1,9 +1,11 @@
-import com.sun.org.apache.xpath.internal.operations.Bool;
+package Base;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class BaseHelper {
@@ -17,8 +19,14 @@ public class BaseHelper {
     }
 
     public FluentWait<WebDriver> fluentWait() {
-        return new WebDriverWait(BaseManager.getInstance().getWebDriverManager().getDriver(), 10).pollingEvery(200, TimeUnit.MILLISECONDS);
-    }
+
+        return new WebDriverWait(BaseManager.getInstance().getWebDriverManager().getDriver(), 60)
+                .pollingEvery(200, TimeUnit.MILLISECONDS)
+                .ignoring(NoSuchElementException.class);
+        }
+
+
+
 
     public Boolean elementPresent(String xpathLocator) {
         return BaseManager

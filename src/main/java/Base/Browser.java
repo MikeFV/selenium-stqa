@@ -1,5 +1,4 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+package Base;
 
 public enum Browser {
     CHROME ("chromedriver.exe", "webdriver.chrome.driver"),

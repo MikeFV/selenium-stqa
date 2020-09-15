@@ -1,5 +1,7 @@
 package Objects;
 
+import java.util.Objects;
+
 public class Zone {
     String name;
 
@@ -21,5 +23,18 @@ public class Zone {
         return "Zone{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Zone zone = (Zone) o;
+        return Objects.equals(name, zone.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

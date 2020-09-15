@@ -3,12 +3,13 @@ package PageObjects;
 public class Pages {
     private static Pages instance = null;
 
-    private AdminLogin adminLogin;
+    private AdminLoginPage adminLoginPage = new AdminLoginPage();
+    private AdminMainPage adminMainPage = new AdminMainPage();
+    private GeoZonesPage geoZonesPage = new GeoZonesPage();
+    private GeoZoneEditPage geoZoneEditPage = new GeoZoneEditPage();
 
 
-    private Pages() {
-        adminLogin = new AdminLogin();
-    }
+    private Pages() {}
 
     public static Pages getInstance() {
         if (instance == null) {
@@ -17,7 +18,19 @@ public class Pages {
         return instance;
     }
 
-    public AdminLogin getAdminLogin() {
-        return adminLogin;
+    public AdminLoginPage getAdminLoginPage() {
+        return adminLoginPage;
+    }
+
+    public AdminMainPage getAdminMainPage() {
+        return adminMainPage;
+    }
+
+    public GeoZonesPage getGeoZonesPage() {
+        return geoZonesPage;
+    }
+
+    public GeoZoneEditPage getGeoZoneEditPage() {
+        return geoZoneEditPage;
     }
 }

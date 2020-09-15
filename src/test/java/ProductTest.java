@@ -1,3 +1,5 @@
+import Base.BaseHelper;
+import Base.BaseManager;
 import Objects.Product;
 import org.junit.After;
 import org.junit.Before;

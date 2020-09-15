@@ -1,3 +1,5 @@
+package Base;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -34,7 +36,7 @@ public class WebDriverManager {
                     break;
             }
             }
-            webDriver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         return this.webDriver;
     }
 
