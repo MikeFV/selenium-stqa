@@ -20,6 +20,11 @@ public class AdminMainPageSteps {
 
     public void openSideMenuPage(String sideMenuElementName) {
         Element sideMenuElement = pages.getAdminMainPage().getSideMenuElement(sideMenuElementName);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         sideMenuElement.getElement().click();
         baseHelper
             .fluentWait()

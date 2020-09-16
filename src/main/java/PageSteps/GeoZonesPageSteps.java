@@ -53,12 +53,12 @@ public class GeoZonesPageSteps {
     }
 
     public void openGeoZoneEditPage(String countryName) {
-        pages.getGeoZonesPage().getCountryByName(countryName).getElement().click();
-        /*try {
-            Thread.sleep(20000);
+        try {
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }*/
+        }
+        pages.getGeoZonesPage().getCountryByName(countryName).getElement().click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(pages.getGeoZoneEditPage().getHeaderByName("Edit Geo Zone").getElement()));
     }
 

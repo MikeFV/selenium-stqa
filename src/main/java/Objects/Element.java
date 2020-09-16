@@ -9,9 +9,9 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class Element {
-    private By xpath;
-    private WebDriver wd;
-    private BaseHelper bh;
+    By xpath;
+    WebDriver wd;
+    BaseHelper bh;
 
     public Element(String xpath) {
         this.xpath = By.xpath(xpath);
@@ -30,4 +30,13 @@ public class Element {
     public By getXpath() {
         return xpath;
     }
+
+    public void click() {
+        wd.findElement(this.xpath).click();
+    }
+
+    public String getValue() {
+        return getElement().getAttribute("value");
+    }
+
 }

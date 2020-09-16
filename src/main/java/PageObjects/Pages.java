@@ -7,6 +7,8 @@ public class Pages {
     private AdminMainPage adminMainPage = new AdminMainPage();
     private GeoZonesPage geoZonesPage = new GeoZonesPage();
     private GeoZoneEditPage geoZoneEditPage = new GeoZoneEditPage();
+    private CatalogPage catalogPage = new CatalogPage();
+    private AddNewProductPage addNewProductPage = new AddNewProductPage();
 
 
     private Pages() {}
@@ -32,5 +34,13 @@ public class Pages {
 
     public GeoZoneEditPage getGeoZoneEditPage() {
         return geoZoneEditPage;
+    }
+
+    public CatalogPage getCatalogPage() {
+        return catalogPage;
+    }
+
+    public AddNewProductPage getAddNewProductPage() {
+        return addNewProductPage;
     }
 }
