@@ -9,6 +9,9 @@ public class Pages {
     private GeoZoneEditPage geoZoneEditPage = new GeoZoneEditPage();
     private CatalogPage catalogPage = new CatalogPage();
     private AddNewProductPage addNewProductPage = new AddNewProductPage();
+    private MainUnauthorizedPage mainUnauthorizedPage = new MainUnauthorizedPage();
+    private MainAuthorizedPage mainAuthorizedPage = new MainAuthorizedPage();
+    private RegistrationPage registrationPage = new RegistrationPage();
 
 
     private Pages() {}
@@ -42,5 +45,17 @@ public class Pages {
 
     public AddNewProductPage getAddNewProductPage() {
         return addNewProductPage;
+    }
+
+    public MainUnauthorizedPage getMainUnauthorizedPage() {
+        return mainUnauthorizedPage;
+    }
+
+    public MainAuthorizedPage getMainAuthorizedPage() {
+        return mainAuthorizedPage;
+    }
+
+    public RegistrationPage getRegistrationPage() {
+        return registrationPage;
     }
 }
