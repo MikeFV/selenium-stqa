@@ -27,7 +27,7 @@ public class RegistrationPageSteps {
     }
 
     public void setCompany(String company) {
-        pages.getRegistrationPage().getCity().getElement().sendKeys(company);
+        pages.getRegistrationPage().getCompany().getElement().sendKeys(company);
     }
 
     public void setFirstName(String name) {
@@ -50,7 +50,7 @@ public class RegistrationPageSteps {
         Random random = new Random();
         Integer max = 999999;
         Integer min = 111111;
-        String randomIndexValue = String.valueOf(random.nextInt(((max - min) + 1) - min));
+        String randomIndexValue = String.valueOf(random.nextInt(((max - min) + 1) + min));
         pages.getRegistrationPage().getPostcode().getElement().sendKeys(randomIndexValue);
     }
 

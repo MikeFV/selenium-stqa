@@ -29,16 +29,23 @@ public class RegistrationTest {
         mainUnauthorizedPageSteps.clickRegistrationButton();
         registrationPageSteps.setTaxId("tax id value");
         registrationPageSteps.setCompany("company value");
+
         registrationPageSteps.setFirstName("first name value");
         registrationPageSteps.setLastName("last name value");
         registrationPageSteps.setAddress1("first address value");
         registrationPageSteps.setAddress2("second address value");
         registrationPageSteps.setValidPostCode();
         registrationPageSteps.setCity("city value");
+
         registrationPageSteps.setValidEmail();
         registrationPageSteps.setValidPhone();
         registrationPageSteps.setDesiredPassword(password);
         registrationPageSteps.setConfirmPassword(password);
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         registrationPageSteps.clickCreateAccountButton();
         mainAuthorizedPage.clickLogoutButton();
         mainUnauthorizedPageSteps.setEmail();
