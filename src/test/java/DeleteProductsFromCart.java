@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-public class DeleteProductsFromCartPage {
+public class DeleteProductsFromCart {
     private BaseManager bm;
     private WebDriver wd;
     private BaseHelper baseHelper;
