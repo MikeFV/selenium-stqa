@@ -5,7 +5,10 @@ import Base.BaseManager;
 import Contexts.LoginContext;
 import PageObjects.Pages;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class MainUnauthorizedPageSteps {
     private WebDriver wd;
@@ -41,5 +44,14 @@ public class MainUnauthorizedPageSteps {
     public void clickLoginButton() {
         pages.getMainUnauthorizedPage().getLoginButton().getElement().click();
         baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(pages.getMainAuthorizedPage().getAuthorizationSuccess().getElement()));
+    }
+
+    public void clickOnMostPopularProduct(Integer orderOfProductInCategory) {
+        if (orderOfProductInCategory < 0) throw new IllegalArgumentException("Номер продукта должен быть >= 0");
+        List<WebElement> products = pages.getMainUnauthorizedPage().getMostPopularProducts().getElements();
+        if (products.isEmpty()) throw new IllegalArgumentException("В разделе отсутствуют продукты");
+        if (products.size() < orderOfProductInCategory) throw new IllegalArgumentException("В разделе отсутствует продукт с указанным номером: " + orderOfProductInCategory);
+        products.get(orderOfProductInCategory).click();
+        baseHelper.fluentWait().until(ExpectedConditions.visibilityOf(pages.getProductDetailPage().getProductDetailFragment().getElement()));
     }
 }

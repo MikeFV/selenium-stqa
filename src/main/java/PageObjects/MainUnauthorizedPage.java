@@ -8,6 +8,8 @@ public class MainUnauthorizedPage {
     private Element email = new Element("//input[@type = 'text'][@name = 'email']");
     private Element password = new Element("//input[@type = 'password'][@name = 'password']");
     private Element loginButton = new Element("//button[@type = 'submit'][@name = 'login']");
+    private Element mostPopularProducts = new Element("//div[@id = 'box-most-popular']//li[contains(@class, 'product')]");
+
 
     public Element getLoginForm() {
         return loginForm;
@@ -27,5 +29,9 @@ public class MainUnauthorizedPage {
 
     public Element getLoginButton() {
         return loginButton;
+    }
+
+    public Element getMostPopularProducts() {
+        return mostPopularProducts;
     }
 }

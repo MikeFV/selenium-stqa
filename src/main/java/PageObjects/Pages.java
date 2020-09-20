@@ -12,6 +12,8 @@ public class Pages {
     private MainUnauthorizedPage mainUnauthorizedPage = new MainUnauthorizedPage();
     private MainAuthorizedPage mainAuthorizedPage = new MainAuthorizedPage();
     private RegistrationPage registrationPage = new RegistrationPage();
+    private ProductDetailPage productDetailPage = new ProductDetailPage();
+    private CheckoutPage checkoutPage = new CheckoutPage();
 
 
     private Pages() {}
@@ -57,5 +59,13 @@ public class Pages {
 
     public RegistrationPage getRegistrationPage() {
         return registrationPage;
+    }
+
+    public ProductDetailPage getProductDetailPage() {
+        return productDetailPage;
+    }
+
+    public CheckoutPage getCheckoutPage() {
+        return checkoutPage;
     }
 }
