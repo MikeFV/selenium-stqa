@@ -14,6 +14,8 @@ public class Pages {
     private RegistrationPage registrationPage = new RegistrationPage();
     private ProductDetailPage productDetailPage = new ProductDetailPage();
     private CheckoutPage checkoutPage = new CheckoutPage();
+    private CountriesPage countriesPage = new CountriesPage();
+    private EditCountryPage editCountryPage = new EditCountryPage();
 
 
     private Pages() {}
@@ -67,5 +69,13 @@ public class Pages {
 
     public CheckoutPage getCheckoutPage() {
         return checkoutPage;
+    }
+
+    public CountriesPage getCountriesPage() {
+        return countriesPage;
+    }
+
+    public EditCountryPage getEditCountryPage() {
+        return editCountryPage;
     }
 }
