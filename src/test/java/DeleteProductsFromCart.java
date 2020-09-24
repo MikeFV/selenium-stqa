@@ -30,17 +30,7 @@ public class DeleteProductsFromCart {
     @Test
     public void deleteProductsFromCart() {
         mainUnauthorizedPageSteps.openMainPage();
-        mainUnauthorizedPageSteps.clickOnMostPopularProduct(0);
-        productDetailPageSteps.setRandomProductPropertyIfExists();
-        productDetailPageSteps.clickAddToCartButton();
-        productDetailPageSteps.clickMainPageButton();
-        mainUnauthorizedPageSteps.clickOnMostPopularProduct(1);
-        productDetailPageSteps.setRandomProductPropertyIfExists();
-        productDetailPageSteps.clickAddToCartButton();
-        productDetailPageSteps.clickMainPageButton();
-        mainUnauthorizedPageSteps.clickOnMostPopularProduct(2);
-        productDetailPageSteps.setRandomProductPropertyIfExists();
-        productDetailPageSteps.clickAddToCartButton();
+        addProductsToCart(3);
         productDetailPageSteps.clickCheckoutButton();
         checkoutPageSteps.removeProducts(3);
     }
@@ -48,6 +38,18 @@ public class DeleteProductsFromCart {
     @After
     public void tearDown() throws Exception {
         wd.close();
+    }
+
+    private void addProductsToCart(Integer countOfProducts) {
+        for (Integer productsCounter = 0; productsCounter < countOfProducts; productsCounter++) {
+            mainUnauthorizedPageSteps.clickOnMostPopularProduct(0);
+            productDetailPageSteps.setRandomProductPropertyIfExists();
+            productDetailPageSteps.clickAddToCartButton();
+            if (productsCounter < countOfProducts) {
+                productDetailPageSteps.clickMainPageButton();
+            }
+
+        }
     }
 
 }
