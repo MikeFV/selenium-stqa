@@ -32,7 +32,7 @@ public class CheckEditCountryPageExternalLinks {
         adminLoginPageSteps.login();
         adminMainPageSteps.openSideMenuPage("Countries");
         countriesPagesSteps.openCountryEditPage();
-        editCountryPageSteps.openAndCloseExternalLinks();
+        editCountryPageSteps.openExternalLinks();
     }
 
     @After

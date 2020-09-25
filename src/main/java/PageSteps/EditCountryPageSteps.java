@@ -2,12 +2,13 @@ package PageSteps;
 
 import Base.BaseHelper;
 import Base.BaseManager;
-import Objects.Element;
 import PageObjects.Pages;
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 
+import java.util.List;
 import java.util.Set;
 
 public class EditCountryPageSteps {
@@ -21,17 +22,14 @@ public class EditCountryPageSteps {
         this.baseHelper = BaseManager.getInstance().getBaseHelper();
     }
 
-    public void openAndCloseExternalLinks() {
-        openExternalLink(pages.getEditCountryPage().getCodeAlpha2ExternalLink());
-        openExternalLink(pages.getEditCountryPage().getCodeAlpha3ExternalLinkv());
-        openExternalLink(pages.getEditCountryPage().getTaxIdFormatExternalLink());
-        openExternalLink(pages.getEditCountryPage().getAddressFormatExternalLink());
-        openExternalLink(pages.getEditCountryPage().getPostCodeFormatExternalLink());
-        openExternalLink(pages.getEditCountryPage().getCurrencyCodeFormatExternalLink());
-        openExternalLink(pages.getEditCountryPage().getPhoneCountryCodeFormatExternalLink());
+    public void openExternalLinks() {
+        List<WebElement> externalLinks = pages.getEditCountryPage().getExternalLinks();
+        for (WebElement externalLink : externalLinks) {
+            openExternalLink(externalLink);
+        }
     }
 
-    private void openExternalLink(Element externalLink) {
+    private void openExternalLink(WebElement externalLink) {
         String currentWindow = wd.getWindowHandle();
         Set<String> oldWindows = wd.getWindowHandles();
         externalLink.click();

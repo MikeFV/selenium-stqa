@@ -1,6 +1,9 @@
 package PageObjects;
 
 import Objects.Element;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class EditCountryPage {
     private Element codeAlpha2ExternalLink = new Element("//td[contains(.,'(ISO 3166-1 alpha-2)')]/strong[contains(.,'Code')]/following-sibling::a");
@@ -10,6 +13,8 @@ public class EditCountryPage {
     private Element postCodeFormatExternalLink = new Element("//strong[contains(.,'Postcode Format')]/following-sibling::a");
     private Element currencyCodeFormatExternalLink = new Element("//strong[contains(.,'Currency Code')]/following-sibling::a");
     private Element phoneCountryCodeFormatExternalLink = new Element("//strong[contains(.,'Phone Country Code')]/following-sibling::a");
+    private Element externalLinks = new Element("//form[@method='post']//table//a[not(@id='address-format-hint')]");
+
 
     public Element getCodeAlpha2ExternalLink() {
         return codeAlpha2ExternalLink;
@@ -37,5 +42,9 @@ public class EditCountryPage {
 
     public Element getPhoneCountryCodeFormatExternalLink() {
         return phoneCountryCodeFormatExternalLink;
+    }
+
+    public List<WebElement> getExternalLinks() {
+        return externalLinks.getElements();
     }
 }
