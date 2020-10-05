@@ -18,7 +18,7 @@ public class CheckoutPageSteps {
         this.baseHelper = BaseManager.getInstance().getBaseHelper();
     }
 
-    public void removeProducts(Integer countOfProducts) {
+    public void removeProductsFromCart(Integer countOfProducts) {
         if (pages.getCheckoutPage().getProductPreview().getElements().size() > 0) {
             pages.getCheckoutPage().getProductPreview().getElements().get(0).click();
         }
